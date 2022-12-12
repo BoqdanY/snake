@@ -1,0 +1,46 @@
+body {
+    background-color: #C6C6C6;
+}
+
+#container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#label {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.block {
+    height: 80px;
+    width: 80px;
+    background-color: #fff;  
+    border: solid 1px #F3F3F3 ;
+    border-radius: px;
+}
+
+.snakeBody {
+    height: 100%;
+    width: 100%;
+    background-color: #efebce;
+}
+
+.snakeHead {
+    height: 100%;
+    width: 100%;
+    background-color: #d6ce93;
+}
+
+.food {
+    height: 100%;
+    width: 100%;
+    background-color: #d8a48f;
+}
