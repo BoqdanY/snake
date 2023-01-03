@@ -7,20 +7,15 @@ function addPoint(point) {
     label.innerHTML = `Score: ${point}`;
 }
 
+const directions = {
+    'ArrowRight': {direction: [0, 1], validation: (values) => values.direction[1] === -1 ? false : true},
+    'ArrowLeft': {direction: [0, -1], validation: (values) => values.direction[1] === 1 ? false : true},
+    'ArrowUp': {direction: [-1, 0], validation: (values) => values.direction[0] === 1 ? false : true},
+    'ArrowDown': {direction: [1, 0], validation: (values) => values.direction[0] === -1 ? false : true},
+};
+
 document.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowRight') {
-        if (snake.direction[1] === -1) return;
-        snake.direction = [0, 1];
-    } else if (event.key === 'ArrowLeft') {
-        if (snake.direction[1] === 1) return;
-        snake.direction = [0, -1];
-    } else if (event.key === 'ArrowUp') {
-        if (snake.direction[0] === 1) return;
-        snake.direction = [-1, 0];
-    } else if (event.key === 'ArrowDown') {
-        if (snake.direction[0] === -1) return;
-        snake.direction = [1, 0];
-    }
+    snake.direction = directions[event.key].validation(snake) ? directions[event.key].direction : snake.direction;
 });
 
 class Area {
