@@ -8,14 +8,23 @@ function addPoint(point) {
 }
 
 const directions = {
-    'ArrowRight': {direction: [0, 1], validation: (values) => values.direction[1] === -1 ? false : true},
-    'ArrowLeft': {direction: [0, -1], validation: (values) => values.direction[1] === 1 ? false : true},
-    'ArrowUp': {direction: [-1, 0], validation: (values) => values.direction[0] === 1 ? false : true},
-    'ArrowDown': {direction: [1, 0], validation: (values) => values.direction[0] === -1 ? false : true},
-};
+    'ArrowRight': [0, 1],
+    'ArrowLeft': [0, -1],
+    'ArrowUp': [-1, 0],
+    'ArrowDown': [1, 0]
+  };
+  const directionChecker = {
+    'ArrowRight': directions['ArrowLeft'],
+    'ArrowLeft': directions['ArrowRight'],
+    'ArrowUp': directions['ArrowDown'],
+    'ArrowDown': directions['ArrowUp']
+  };
+  
 
 document.addEventListener('keydown', (event) => {
-    snake.direction = directions[event.key].validation(snake) ? directions[event.key].direction : snake.direction;
+    if(directionChecker[event.key] != snake.direction) {
+        snake.direction = directions[event.key];
+    }
 });
 
 class Area {
@@ -72,7 +81,7 @@ class Food {
 class Snake {
     constructor(area, food) {
         this.arr = [[1,1], [1,2]];
-        this.direction = [1, 0];
+        this.direction = directions['ArrowDown'];
         this.area = area;
         this.food = food;
         this.point = 0;
